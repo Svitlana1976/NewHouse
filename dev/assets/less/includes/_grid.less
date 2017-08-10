@@ -1,9 +1,10 @@
-.grid(@name, @i: 1) when (@i =< @columns){
+.grid(@name,@padding, @i: 1) when (@i =< @columns){
     .@{name}@{i}{
         width: 100% / @columns * @i;
+        padding: 0 @padding;
     }
 
-    .grid(@name, @i + 1);
+    .grid(@name, @padding, @i + 1);
 }
 
 .row{
@@ -39,11 +40,18 @@
     }
 }
 
-.grid(sm);
+.grid(sm, 5px);
 @media screen and (min-width: @width-sm){
-    .grid(md);
+    .grid(md, 10px);
 }
 
 @media screen and (min-width: @width-mid){
-    .grid(lg);
+    .grid(lg, 15px);
+}
+
+.offset-md1{
+    @media screen and (min-width: @width-sm) and (max-width: @width-mid){
+        position: relative;
+        left: 100%/12;
+    }
 }
